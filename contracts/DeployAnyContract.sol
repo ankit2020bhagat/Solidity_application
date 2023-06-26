@@ -29,17 +29,19 @@ contract TestContract2 {
 contract Proxy {
     error ZeroAddress();
     error FailedtoSend();
-    event Deployed(address deploye);
-
+    event Deployed(address indexed deploye);
+    address public add;
     function deploye(
         bytes memory _code
-    ) external payable returns (address addr) {
+    ) external payable returns(address addr) {
+
         assembly {
             addr := create(callvalue(), add(_code, 0x20), mload(_code))
         }
         if (addr == address(0)) {
             revert ZeroAddress();
         }
+        add = addr;
         emit Deployed(addr);
     }
 
@@ -52,6 +54,7 @@ contract Proxy {
 }
 
 contract Helper {
+   
     function getByteCode1() external pure returns (bytes memory) {
         bytes memory byteCode = type(TestContract1).creationCode;
         return byteCode;
