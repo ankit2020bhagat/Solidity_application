@@ -1,7 +1,7 @@
 const { ethers } = require("hardhat");
 const TestcontractAbi = require("../artifacts/contracts/DeployAnyContract.sol/TestContract1.json");
 const TestContract2abi = require("../artifacts/contracts/DeployAnyContract.sol/TestContract2.json");
-describe.only("Proxy and Helper  contract", function () {
+describe("Proxy and Helper  contract", function () {
   let Helper,
     Proxy,
     TestContract1Address,
