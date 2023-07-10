@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe.only("Test Call Contract", function () {
+describe("Test Call Contract", function () {
   let testCall, call;
   it("Deploy Test contract and Call", async function () {
     testCall = await ethers.deployContract("TestCall", []);
